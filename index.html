@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Form Deposit Dana</title>
+  <style>
+    body {
+      background-color: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    input, button {
+      width: 80%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: none;
+    }
+    input {
+      background-color: #222;
+      color: white;
+    }
+    button {
+      background-color: #FFD700;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .qr-section {
+      margin: 30px 0;
+    }
+    .qr-method {
+      margin-bottom: 20px;
+    }
+    .qr-method img {
+      width: 250px;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2 style="color: #FFD700;">Form Deposit Dana</h2>
+
+  <div>
+    <p>No. Dana Tujuan</p>
+    <input type="text" value="085713933912" disabled>
+    <p>Atas Nama: Waito</p>
+
+    <p>Nominal Deposit (Rp)</p>
+    <input type="number" id="nominal" placeholder="Contoh: 100000">
+
+    <p>Username Akun</p>
+    <input type="text" id="username" placeholder="Masukkan username Anda">
+
+    <button onclick="kirimDeposit()">Kirim Deposit</button>
+
+    <p style="margin-top: 20px;">
+      Pastikan transfer ke nomor Dana/GoPay di atas atau scan QRIS, dan isi nominal dengan benar.
+    </p>
+
+    <div class="qr-section">
+      <h3 style="color: #FFD700;">Metode Pembayaran</h3>
+
+      <div class="qr-method">
+        <h4>QRIS</h4>
+        <img src="QRIS-Kinzx.png" alt="QRIS Kinzx">
+        <p>Nama: Kinzx<br>NMID: ID720895379234782</p>
+      </div>
+
+      <div class="qr-method">
+        <h4>DANA</h4>
+        <p>085713933912 (Waito)</p>
+      </div>
+
+      <div class="qr-method">
+        <h4>GoPay</h4>
+        <p>085713933912 (Waito)</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function kirimDeposit() {
+      const nominal = document.getElementById("nominal").value;
+      const username = document.getElementById("username").value;
+      if (!nominal || !username) {
+        alert("Silakan lengkapi semua data!");
+        return;
+      }
+
+      const pesan = `Halo Admin, saya telah melakukan deposit via QRIS/Dana/GoPay ke 085713933912 atas nama Waito.\n\nNominal: Rp ${nominal}\nUsername: ${username}`;
+      const nomorWA = "0895379234782";
+      const linkWA = `https://wa.me/62${nomorWA.slice(1)}?text=${encodeURIComponent(pesan)}`;
+      window.open(linkWA, '_blank');
+    }
+  </script>
+</body>
+</html>
